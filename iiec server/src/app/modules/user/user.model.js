@@ -4,11 +4,11 @@ const userSchema = new Schema({
   name: {
     type: String,
     required: [true, "name is required!!"],
-    unique: true,
   },
   email: {
     type: String,
     required: [true, "email is required!!"],
+    unique: true,
   },
   phone: {
     type: Number,
