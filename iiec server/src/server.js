@@ -4,7 +4,7 @@ import "dotenv/config";
 
 async function Main() {
   try {
-    await mongoose.connect("mongodb://localhost:27017");
+    await mongoose.connect(process.env.DATABASE_URL);
     app.listen(process.env.PORT, () => {
       console.log(`listening from port ${process.env.PORT} `);
     });
