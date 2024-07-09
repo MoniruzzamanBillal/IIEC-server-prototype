@@ -1,6 +1,9 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
+import "dotenv/config";
+import globalErrorHandler from "./app/middleware/globalErrorHandler.js";
+import { mainRouter } from "./app/routes/index.js";
 
 const app = express();
 
@@ -16,9 +19,14 @@ app.get("/", async (req, res, next) => {
   }
 });
 
+app.use("/api/v1", mainRouter);
+
 //   ! not found route
 app.all("*", async (req, res) => {
   res.status(400).json({ success: false, message: "Route not found " });
 });
+
+// ! global error handler
+app.use(globalErrorHandler);
 
 export default app;
